@@ -1,9 +1,17 @@
 const post = async (_, args, context) => {
   const data = await context.getPosts(args.id);
+  if (Math.random() > 0.5) {
+    return {
+      statusCode: 500,
+      message: 'limit timeout',
+      time: new Date(),
+    };
+  }
   if (!data.ok) {
     return {
       statusCode: 404,
       message: 'post not found',
+      postId: args.id,
     };
   }
   const postData = await data.json();
@@ -27,8 +35,16 @@ export const postResolvers = {
   },
   PostResult: {
     __resolveType: (obj) => {
-      if (obj.statusCode) return 'PostNotFoundError';
+      if (obj.postId) return 'PostNotFoundError';
+      if (obj.time) return 'PostTimeoutError';
       if (obj.id) return 'Post';
+      return null;
+    },
+  },
+  PostError: {
+    __resolveType: (obj) => {
+      if (obj.postId) return 'PostNotFoundError';
+      if (obj.time) return 'PostTimeoutError';
       return null;
     },
   },
