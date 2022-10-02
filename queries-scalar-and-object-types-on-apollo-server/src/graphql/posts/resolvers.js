@@ -1,8 +1,8 @@
-const post = () => ({
-  id: 'dsfsdfsd1223ds',
-  title: 'Eleições',
-  body: 'Eleições 2022 terá efeito revolucionário',
-});
+const post = async (_, args, context) => {
+  const data = await context.getPosts(args.id);
+  const postData = await data.json();
+  return postData;
+};
 
 const posts = async (_, __, context) => {
   const data = await context.getPosts();
