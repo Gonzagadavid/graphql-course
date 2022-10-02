@@ -3,16 +3,10 @@ const user = () => ({
   userName: 'David',
 });
 
-const users = () => [
-  {
-    id: '232dddes2',
-    userName: 'David',
-  },
-  {
-    id: '232dddes3',
-    userName: 'Gonzaga',
-  },
-];
+const users = async (_, __, { getData }) => {
+  const usersData = await getData('http://localhost:3000/users');
+  return usersData;
+};
 
 export const userResolvers = {
   Query: { user, users },
