@@ -13,5 +13,6 @@ type Post {
   user: User!,
   indexRef: Int!,
   createdAt: String!
+  timestamp: String!
 }
 `;

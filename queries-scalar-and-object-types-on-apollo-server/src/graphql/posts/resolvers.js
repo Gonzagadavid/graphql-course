@@ -12,4 +12,10 @@ const posts = async (_, __, context) => {
 
 export const postResolvers = {
   Query: { post, posts },
+  Post: {
+    timestamp: (parent) => {
+      const timestamp = new Date(parent.createdAt);
+      return timestamp;
+    },
+  },
 };
