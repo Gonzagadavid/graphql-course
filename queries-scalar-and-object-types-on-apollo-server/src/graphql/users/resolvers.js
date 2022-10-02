@@ -1,10 +1,12 @@
-const user = () => ({
-  id: '232dddes2',
-  userName: 'David',
-});
+const user = async (_, args, context) => {
+  const data = await context.getUsers(args.id);
+  const userData = await data.json();
+  return userData;
+};
 
-const users = async (_, __, { getData }) => {
-  const usersData = await getData('http://localhost:3000/users');
+const users = async (_, __, context) => {
+  const data = await context.getUsers();
+  const usersData = await data.json();
   return usersData;
 };
 
