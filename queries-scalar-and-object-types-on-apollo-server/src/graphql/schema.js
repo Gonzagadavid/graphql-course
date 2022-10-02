@@ -1,4 +1,5 @@
 import { gql } from 'apollo-server';
+import { inputFieldsResolvers } from './inputFields/resolvers.js';
 import { inputFields } from './inputFields/typeDefs.js';
 import { postResolvers } from './posts/resolvers.js';
 import { posts } from './posts/typeDefs.js';
@@ -13,4 +14,4 @@ type Query {
 
 export const typeDefs = [rootTypeDefs, users, posts, inputFields];
 
-export const resolvers = [userResolvers, postResolvers];
+export const resolvers = [userResolvers, postResolvers, inputFieldsResolvers];
