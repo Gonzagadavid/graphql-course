@@ -4,8 +4,9 @@ const post = async (_, args, context) => {
   return postData;
 };
 
-const posts = async (_, __, context) => {
-  const data = await context.getPosts();
+const posts = async (_, args, context) => {
+  const inputFields = new URLSearchParams(args.input);
+  const data = await context.getPosts(`/?${inputFields.toString()}`);
   const postsData = data.json();
   return postsData;
 };

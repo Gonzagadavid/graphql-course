@@ -4,8 +4,9 @@ const user = async (_, args, context) => {
   return userData;
 };
 
-const users = async (_, __, context) => {
-  const data = await context.getUsers();
+const users = async (_, args, context) => {
+  const inputFields = new URLSearchParams(args.input);
+  const data = await context.getUsers(`/?${inputFields.toString()}`);
   const usersData = await data.json();
   return usersData;
 };
