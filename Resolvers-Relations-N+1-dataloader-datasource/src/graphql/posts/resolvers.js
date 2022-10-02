@@ -11,6 +11,13 @@ const posts = async (_, args, context) => {
   return postsData;
 };
 
+const user = async (parent, _, context) => {
+  const data = await context.getUsers(parent.userId);
+  const userData = await data.json();
+  return userData;
+};
+
 export const postResolvers = {
   Query: { post, posts },
+  Post: { user },
 };
