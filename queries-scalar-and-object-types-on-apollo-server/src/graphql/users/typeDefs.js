@@ -7,7 +7,12 @@ extend type Query {
 } 
 
 type User {
-  id: ID!
-  userName: String!
+  id: ID!,
+  firstName: String!,
+  lastName: String!,
+  userName: String!,
+  indexRef: Int!,
+  createdAt: String!
+  posts: [Post!]!
 }
 `;
