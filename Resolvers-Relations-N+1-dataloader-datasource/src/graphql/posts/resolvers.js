@@ -11,7 +11,7 @@ const posts = async (_, args, context) => {
   return postsData;
 };
 
-const user = async (parent, _, context) => context.userDataLoader.load(parent.userId, context);
+const user = async (parent, _, context) => context.userDataLoader.load(parent.userId);
 
 export const postResolvers = {
   Query: { post, posts },
