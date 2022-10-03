@@ -1,13 +1,10 @@
-const post = async (_, args, context) => {
-  const data = await context.getPosts(args.id);
-  const postData = await data.json();
+const post = async (_, args, { dataSources }) => {
+  const postData = await dataSources.postApi.getPost(args.id);
   return postData;
 };
 
-const posts = async (_, args, context) => {
-  const inputFields = new URLSearchParams(args.input);
-  const data = await context.getPosts(`/?${inputFields.toString()}`);
-  const postsData = data.json();
+const posts = async (_, args, { dataSources }) => {
+  const postsData = await dataSources.postApi.getPosts(args.inputFields);
   return postsData;
 };
 
